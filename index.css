@@ -154,6 +154,17 @@ footer {
     transition: transform 0.1s ease-in-out;
 }
 
+@media (min-width: 900px) {
+    .home-container a {
+        width: 50%;
+
+    }
+    .home-container{
+        text-align: center;
+    }
+
+}
+
 .home-container a:hover {
     transform: translate(1px, 1px);
 }
@@ -546,6 +557,33 @@ i[class*="van-type-"] {
     color: red;
 }
 
+.fakelogOut{
+    background-color: #ff8c38;
+    color: white;
+    padding: 0,1em,0,0 ;
+    font-weight: 700;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    border:none;
+    margin-right: 10px;
+}
+
+.login-text{
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+}
+
+.login-text > p{
+padding:0;
+margin:0.4em;
+}
+
+.login-text > h2{
+    color: red;
+}
+
 .host-dashboard-earnings {
     background-color: #ffead0;
     padding: 37px 26px;
@@ -739,4 +777,29 @@ img.graph {
 .host-reviews .review-star {
     color: #ff8c38;
     margin-right: 5px;
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    padding-block: 10px;
+    background-color: #fff7ed;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+.site-header.scrolled {
+    background-color: rgba(255, 247, 237, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add this to your main content to prevent it from being hidden behind the header */
+main {
+    margin-top: 110px; /* Should match header height */
+    margin-bottom: 84px;
 }

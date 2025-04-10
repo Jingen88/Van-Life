@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"
 import imageUrl from "/assets/images/avatar-icon.png"
 
 export default function Header() {
@@ -8,13 +8,28 @@ export default function Header() {
         textDecoration: "underline",
         color: "#161616"
     }
-
+    
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [isScrolled, setIsScrolled] = React.useState(false)
+    
+    React.useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 10)
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+    
     function fakeLogOut() {
         localStorage.removeItem("loggedin")
+        navigate("/")
     }
+    
+    const isHostRoute = location.pathname.startsWith("/host")
 
     return (
-        <header>
+        <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
             <Link className="site-logo" to="/">#VanLife</Link>
             <nav>
                 <NavLink
@@ -39,9 +54,12 @@ export default function Header() {
                     <img
                         src={imageUrl}
                         className="login-icon"
+                        alt="Login"
                     />
                 </Link>
-                <button onClick={fakeLogOut}>X</button>
+                {isHostRoute && (
+                    <button className="fakelogOut" onClick={fakeLogOut}>LogOut</button>
+                )}
             </nav>
         </header>
     )

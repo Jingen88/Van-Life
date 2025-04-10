@@ -39,6 +39,13 @@ export default function Login() {
 
     return (
         <div className="login-container">
+            <div className="login-text">
+<h2>This site is part of a portfolio not for real world use!</h2>
+    <p>Use these Credenetials to Login:</p>
+    <p>Email: b@b.com</p>
+    <p>Password: p123</p>
+
+</div>
             {
                 location.state?.message &&
                     <h3 className="login-error">{location.state.message}</h3>
@@ -74,6 +81,7 @@ export default function Login() {
                 </button>
             </form>
         </div>
+
     )
 
 }
